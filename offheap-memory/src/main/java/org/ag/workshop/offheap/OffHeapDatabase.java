@@ -16,13 +16,13 @@ public class OffHeapDatabase implements Database {
     @Override
     public void allocate(final int numberOfUsers) {
         this.numberOfUsers = numberOfUsers;
-        address = UNSAFE.allocateMemory(numberOfUsers * OffHeapUser.RECORD_SIZE);
+        address = UNSAFE.allocateMemory( numberOfUsers * (long) OffHeapUser.RECORD_SIZE);
     }
 
     @Override
     public void loadUsers() {
         for (int i = 0; i < numberOfUsers; i++) {
-            userFlyweight.setRecordOffset(address + (i * OffHeapUser.RECORD_SIZE));
+            userFlyweight.setRecordOffset(address + (i * (long) OffHeapUser.RECORD_SIZE));
             Utils.setDummyUser(userFlyweight, i, usernameTemplateForLoadUsers);
         }
     }
@@ -30,7 +30,7 @@ public class OffHeapDatabase implements Database {
     @Override
     public User findUserByName(final byte[] username) {
         for (int i = 0; i < numberOfUsers; i++) {
-            userFlyweight.setRecordOffset(address + (i * OffHeapUser.RECORD_SIZE));
+            userFlyweight.setRecordOffset(address + (i * (long) OffHeapUser.RECORD_SIZE));
             if (userFlyweight.usernameEqualsTo(username)) {
                 return userFlyweight;
             }
