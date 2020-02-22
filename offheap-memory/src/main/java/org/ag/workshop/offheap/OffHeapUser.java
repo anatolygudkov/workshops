@@ -5,6 +5,7 @@ import static org.ag.workshop.offheap.Utils.FIXED_STRING_LENGTH;
 
 public class OffHeapUser implements User {
     private static final int BYTE_ARRAY_OFFSET = UNSAFE.arrayBaseOffset(int[].class);
+
     private final static int USERNAME_OFFSET = 0;
     private final static int AGE_OFFSET = USERNAME_OFFSET + FIXED_STRING_LENGTH;
     private final static int COLLECTED_MILES_OFFSET = AGE_OFFSET + 4;
