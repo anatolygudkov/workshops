@@ -1,6 +1,6 @@
 ## Useful commands
 
-In the following assembly we can see that C2 compiles Unsafe.putX to one single ```mov``` with no boundary checking and so on.
+In the following assembly we can see that C2 compiles Unsafe.putX to one single ```mov``` even with no boundary checking.
 ```
 java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:+PrintInlining org.ag.workshop.offheap.OffHeapDatabaseTest &> OffHeapDatabaseTest.asm
 ```
